@@ -23,7 +23,7 @@ A powerful utility for Linux kernel management, offering an improved alternative
    ```
 2. Build the project:
    ```bash
-   CFLAGS="-march=native -O3 -pipe" cc kcleaner.c -o kcleaner
+   cc -march=native -O3 -pipe kcleaner.c -o kcleaner
    ```
 3. Install to your system:
    ```bash
