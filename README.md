@@ -11,7 +11,6 @@ A powerful utility for Linux kernel management, offering an improved alternative
 - **Selective Cleaning** 🎯: Remove specific kernels using individual numbers or ranges.
 - **Auto-Clean Mode** 🤖: Automatically keep only the latest and currently running kernels.
 - **Safety First** 🛡️: Built-in safeguards prevent creating unbootable systems.
-- **Root Verification** 🔒: Ensures proper permissions for kernel management operations.
 
 ---
 ## 🚀 Quick Start
