@@ -46,6 +46,26 @@ bool check_root_privileges() {
     return true;
 }
 
+bool check_command_exists(const char *cmd) {
+    char which_cmd[PATH_MAX];
+    snprintf(which_cmd, sizeof(which_cmd), "which %s >/dev/null 2>&1", cmd);
+    return (system(which_cmd) == 0);
+}
+
+void update_grub() {
+    if (check_command_exists("update-grub")) {
+        printf("Updating GRUB bootloader configuration...\n");
+        int result = system("update-grub");
+        if (result == 0) {
+            printf("GRUB configuration updated successfully.\n");
+        } else {
+            printf("Warning: Failed to update GRUB configuration (exit code: %d).\n", result);
+        }
+    } else {
+        printf("Note: GRUB update-grub command not found, skipping bootloader update.\n");
+    }
+}
+
 void get_running_kernel() {
     FILE *fp = fopen("/proc/version", "r");
     if (fp == NULL) {
@@ -280,7 +300,12 @@ void delete_kernels(const char *selection) {
             delete_kernel(i);
         }
     }
+    
     printf("\nDeletion completed.\n");
+    
+    if (delete_count > 0) {
+        update_grub();
+    }
 }
 
 void auto_clean() {
@@ -341,7 +366,10 @@ void auto_clean() {
             delete_kernel(i);
         }
     }
+    
     printf("\nAuto-clean completed.\n");
+    
+    update_grub();
 }
 
 int main(int argc, char *argv[]) {
