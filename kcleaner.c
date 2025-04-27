@@ -33,7 +33,7 @@ void print_help() {
     printf("  kcleaner -l\n");
     printf("  kcleaner -d 2,4,7\n");
     printf("  kcleaner -d 1-3,5,8-10\n");
-    printf("  kcleaner -a\n");
+    printf("  kcleaner -a\n\n");
 }
 
 bool check_root_privileges() {
